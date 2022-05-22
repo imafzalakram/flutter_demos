@@ -9,12 +9,15 @@ void main() {
             "App Bar",
           ),
         ),
-        body: ElevatedButton(
-          onPressed: () {
-            print("Pressed");
-          },
-          child: Text("Elevated Button"),
-        ),
+        body: Container(
+          child: Column(
+            children: [
+              Text("First Child"),
+              Text("Second Child"),
+              Text("Third Child")
+            ],
+          ),
+        )
       ),
     ),
   );
