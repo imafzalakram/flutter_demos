@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+
 void main() {
   runApp(
     MaterialApp(
-      home: Center(
+        home: Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "App Bar",
+        ),
+      ),
+      body: Center(
         child: Text(
           "Hello World!",
           textDirection: TextDirection.ltr,
@@ -12,6 +19,6 @@ void main() {
           ),
         ),
       ),
-    ),
+    )),
   );
 }
