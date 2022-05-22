@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 void main() {
   runApp(
     MaterialApp(
@@ -7,17 +9,11 @@ void main() {
             "App Bar",
           ),
         ),
-        body: Material(
-          child: Container(
-            alignment: Alignment.centerRight,
-            child: Text(
-              "Hello World!",
-              style: TextStyle(
-                color: Colors.lightBlueAccent,
-                fontSize: 30.0,
-              ),
-            ),
-          ),
+        body: ElevatedButton(
+          onPressed: () {
+            print("Pressed");
+          },
+          child: Text("Elevated Button"),
         ),
       ),
     ),
