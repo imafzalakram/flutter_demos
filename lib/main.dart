@@ -1,42 +1,35 @@
-import 'package:flutter/material.dart';
-
 void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "App Bar",
-          ),
-        ),
-        body: Container(
-          child: Row(
-            children: [
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(15.0),
-                  color: Colors.green,
-                  child: Text("First Child"),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(15.0),
-                  color: Colors.blue,
-                  child: Text("First Child"),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(15.0),
-                  color: Colors.brown,
-                  child: Text("First Child"),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    ),
-  );
+  Printer<BluePrinter> obj = Printer<BluePrinter> (BluePrinter());
+}
+
+// Generics Class
+class Printer<T extends PrintAllColors  > {
+
+  //Generic Constructor
+  Printer(T t){
+    print(t);
+  }
+}
+
+class PrintAllColors {
+
+}
+
+class BluePrinter  extends PrintAllColors{
+
+  BluePrinter(){
+    print("This is a BluePrinter class");
+  }
+}
+
+class GrayPrinter extends PrintAllColors{
+  GrayPrinter(){
+    print("This is a GrayPrinter class");
+  }
+}
+
+class RedPrinter extends PrintAllColors{
+  RedPrinter(){
+    print("This is a BluePrinter class");
+  }
 }
