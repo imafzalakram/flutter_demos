@@ -1,35 +1,35 @@
 void main() {
-  Printer<BluePrinter> obj = Printer<BluePrinter> (BluePrinter());
+  Cat cat = Cat();
+  cat.voice();
+  Dog dog = Dog ();
+  dog.voice();
 }
 
-// Generics Class
-class Printer<T extends PrintAllColors  > {
+abstract class Animal {
+  String? animalName;
+  int? animalAge;
 
-  //Generic Constructor
-  Printer(T t){
-    print(t);
+  // abstact function / incomplete function
+  voice();
+
+  eating(){
+    print("Animals Eat");
   }
 }
 
-class PrintAllColors {
-
-}
-
-class BluePrinter  extends PrintAllColors{
-
-  BluePrinter(){
-    print("This is a BluePrinter class");
+class Cat extends Animal{
+  // Complete function
+  @override
+  voice(){
+    print("Meow");
   }
 }
 
-class GrayPrinter extends PrintAllColors{
-  GrayPrinter(){
-    print("This is a GrayPrinter class");
+
+class Dog extends Animal {
+  @override
+  voice() {
+    print("Barking");
   }
 }
 
-class RedPrinter extends PrintAllColors{
-  RedPrinter(){
-    print("This is a BluePrinter class");
-  }
-}
