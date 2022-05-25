@@ -1,35 +1,88 @@
+import 'package:flutter/material.dart';
+
 void main() {
-  Cat cat = Cat();
-  cat.voice();
-  Dog dog = Dog ();
-  dog.voice();
+  runApp(MaterialApp(
+    home: Scaffold(
+      appBar: AppBar(
+        title: Text("TextField Widget"),
+      ),
+      body: Material(
+        child: MyClass(),
+      ),
+    ),
+  ));
 }
 
-abstract class Animal {
-  String? animalName;
-  int? animalAge;
-
-  // abstact function / incomplete function
-  voice();
-
-  eating(){
-    print("Animals Eat");
-  }
-}
-
-class Cat extends Animal{
-  // Complete function
+class MyClass extends StatelessWidget {
   @override
-  voice(){
-    print("Meow");
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  labelText: "Name",
+                  hintText: "Enter Name",
+                  labelStyle: TextStyle(fontSize: 20.0),
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.person),
+                  filled: false,
+                  fillColor: Colors.black12),
+              keyboardType: TextInputType.name,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  labelText: "Email",
+                  hintText: "Enter Email Address",
+                  labelStyle: TextStyle(fontSize: 20.0),
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.email),
+                  filled: false,
+                  fillColor: Colors.black12),
+              keyboardType: TextInputType.emailAddress,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  labelText: "Phone Number",
+                  hintText: "Enter Phone Number",
+                  labelStyle: TextStyle(fontSize: 20.0),
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.phone),
+                  filled: false,
+                  fillColor: Colors.black12),
+              keyboardType: TextInputType.phone,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  labelText: "Address",
+                  hintText: "Enter Address",
+                  labelStyle: TextStyle(fontSize: 20.0),
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.location_city),
+                  filled: false,
+                  fillColor: Colors.black12),
+              keyboardType: TextInputType.streetAddress,
+              maxLines: 2,
+            ),
+          ),
+          ElevatedButton(
+              onPressed: () {
+
+              },
+              child: Text("Submit"))
+        ],
+      ),
+    );
   }
 }
-
-
-class Dog extends Animal {
-  @override
-  voice() {
-    print("Barking");
-  }
-}
-
