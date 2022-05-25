@@ -16,73 +16,38 @@ void main() {
 class MyClass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: TextField(
-              decoration: InputDecoration(
-                  labelText: "Name",
-                  hintText: "Enter Name",
-                  labelStyle: TextStyle(fontSize: 20.0),
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.person),
-                  filled: false,
-                  fillColor: Colors.black12),
-              keyboardType: TextInputType.name,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: TextField(
-              decoration: InputDecoration(
-                  labelText: "Email",
-                  hintText: "Enter Email Address",
-                  labelStyle: TextStyle(fontSize: 20.0),
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email),
-                  filled: false,
-                  fillColor: Colors.black12),
-              keyboardType: TextInputType.emailAddress,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: TextField(
-              decoration: InputDecoration(
-                  labelText: "Phone Number",
-                  hintText: "Enter Phone Number",
-                  labelStyle: TextStyle(fontSize: 20.0),
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.phone),
-                  filled: false,
-                  fillColor: Colors.black12),
-              keyboardType: TextInputType.phone,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: TextField(
-              decoration: InputDecoration(
-                  labelText: "Address",
-                  hintText: "Enter Address",
-                  labelStyle: TextStyle(fontSize: 20.0),
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.location_city),
-                  filled: false,
-                  fillColor: Colors.black12),
-              keyboardType: TextInputType.streetAddress,
-              maxLines: 2,
-            ),
-          ),
-          ElevatedButton(
-              onPressed: () {
-
-              },
-              child: Text("Submit"))
-        ],
-      ),
+    return ElevatedButton(
+      child: Text("Show Dialog"),
+      onPressed: () {
+        openAlertBox(context);
+      },
     );
+  }
+
+  openAlertBox(BuildContext context) {
+    // here we will write a code to display a AlertBox
+    AlertDialog alertDialog = AlertDialog(
+      title: Text(
+        "Alert",
+        style: TextStyle(color: Colors.white),
+      ),
+      content: Text(
+        "Are you sure to submit this form?",
+        style: TextStyle(color: Colors.white),
+      ),
+      actions: [
+        TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("No")),
+        TextButton(onPressed: () {}, child: Text("Yes")),
+      ],
+    );
+    showDialog(
+        context: context,
+        builder: (context) {
+          return alertDialog;
+        });
   }
 }
