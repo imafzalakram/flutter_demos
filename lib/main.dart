@@ -1,53 +1,53 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: Scaffold(
-      appBar: AppBar(
-        title: Text("TextField Widget"),
-      ),
-      body: Material(
-        child: MyClass(),
-      ),
-    ),
-  ));
+  runApp(StudentItro());
 }
 
-class MyClass extends StatelessWidget {
+class StudentItro extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return StudentIntroStates();
+  }
+}
+
+class StudentIntroStates extends State<StudentItro> {
+  String studentIntro="Empty";
+
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      child: Text("Show Dialog"),
-      onPressed: () {
-        openAlertBox(context);
-      },
-    );
-  }
+    debugPrint("calling build function");
 
-  openAlertBox(BuildContext context) {
-    // here we will write a code to display a AlertBox
-    AlertDialog alertDialog = AlertDialog(
-      title: Text(
-        "Alert",
-        style: TextStyle(color: Colors.white),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text("Handeling Statefull Widget"),),
+        body: Container(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              TextField(
+                decoration: InputDecoration(
+                  labelText: "Enter Student Intro",
+                  hintText: "Enter text",
+                ),
+                onSubmitted: (String intro){
+                  // The most improtant function in all statefull widgets
+                  setState((){
+                    debugPrint("calling setState function");
+                    studentIntro=intro;
+                  });
+                },
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(top: 30.0),
+                child: Text("Student Intro: $studentIntro",
+                style: TextStyle(fontSize: 25.0),),
+              )
+            ],
+          ),
+        ),
       ),
-      content: Text(
-        "Are you sure to submit this form?",
-        style: TextStyle(color: Colors.white),
-      ),
-      actions: [
-        TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text("No")),
-        TextButton(onPressed: () {}, child: Text("Yes")),
-      ],
     );
-    showDialog(
-        context: context,
-        builder: (context) {
-          return alertDialog;
-        });
   }
 }
