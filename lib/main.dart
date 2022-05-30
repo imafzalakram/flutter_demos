@@ -13,21 +13,35 @@ void main() {
   );
 }
 
+
 class ListViewDesign extends StatelessWidget {
-  List<String> months = ["April", "May", "June", "July", 'Aug','Sep','Oct','Nov','Dec','Jan', 'Feb','March', 'April'];
-  List<int> colorsList = [300,200,100,500,900,600,400,700,600,600,800,200,600];
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: months.length,
+      itemCount: 30,
       itemBuilder: (BuildContext context, int index) {
-        return Container(
-          height: 70,
-          color: Colors.amber[colorsList[index]],
-          child: Center(
-            child: Text(
-              "${months[index]}",
-              style: TextStyle(fontSize: 20),
+        return Card(
+          child: Container(
+            child: Column(
+              children: [
+                ListTile(
+                  title: Text("Muhammad Ali"),
+                  subtitle: Text("Senior Mobile App Developer"),
+                  leading: Icon(Icons.person_add),
+                  trailing: Icon(Icons.arrow_forward),
+                  onTap: () {},
+                ),
+
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(onPressed: () {}, child: Text("Add")),
+                      TextButton(onPressed: () {}, child: Text("Cancel")),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         );
