@@ -1,51 +1,44 @@
 import 'package:flutter/material.dart';
 
+
 void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("ListView Design"),
-        ),
-        body: ListViewDesign(),
-      ),
-    ),
-  );
+  runApp(DDMenu());
 }
 
 
-class ListViewDesign extends StatelessWidget {
+class DDMenu extends StatefulWidget {
+
+  @override
+  State<DDMenu> createState() => _DDMenuState();
+}
+
+class _DDMenuState extends State<DDMenu> {
+  List<String> list = ["Pakistan", "India", "Bangladesh"];
+  String? selectedCountry = "Pakistan";
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 30,
-      itemBuilder: (BuildContext context, int index) {
-        return Card(
-          child: Container(
-            child: Column(
-              children: [
-                ListTile(
-                  title: Text("Muhammad Ali"),
-                  subtitle: Text("Senior Mobile App Developer"),
-                  leading: Icon(Icons.person_add),
-                  trailing: Icon(Icons.arrow_forward),
-                  onTap: () {},
-                ),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text("Drop Down Menus"),),
+        body: Center(
+          child: DropdownButton<String>(
+              value: selectedCountry,
+              items: list.map<DropdownMenuItem<String>>((v) {
+                return DropdownMenuItem<String>(
+                  child: Text(v),
+                  value: v,
+                );
+              }).toList(),
 
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(onPressed: () {}, child: Text("Add")),
-                      TextButton(onPressed: () {}, child: Text("Cancel")),
-                    ],
-                  ),
-                )
-              ],
-            ),
+              onChanged: ( newCountry){
+                setState((){
+                  selectedCountry=newCountry;
+                });
+              }
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
