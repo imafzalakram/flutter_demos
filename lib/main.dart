@@ -1,58 +1,23 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:hello_world/second.dart';
+import 'package:http/http.dart' as http;
 
-void main() {
-  runApp(MaterialApp(
-    home: NavDrawer(),
-  ));
-}
+Future<void> main() async {
+  var url = Uri.parse('https://yashigarments.com/mobile_api.php');
+  var response = await http.get(url);
+  Map<String, dynamic> res = jsonDecode(response.body);
 
-class NavDrawer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Navigation Drawer"),
-
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-              child: Text("Drawer Header",
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.white
-                ),),
-              decoration: BoxDecoration(
-                color: Colors.lightBlue,
-              ),
-            ),
-            ListTile(
-              title: Text("Contact Us"),
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return SecondUI();
-                }));
-              },
-            ),
-            ListTile(
-              title: Text("Privacy Policy"),
-              onTap: (){
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text("Return Poliy"),
-              onTap: (){
-                Navigator.pop(context);
-
-              },
-            ),
-          ],
+  runApp(
+    MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Http Request Example"),
+        ),
+        body: ListTile(
+          title: Text(res['name'],style: TextStyle(color: Colors.black,fontSize: 20),),
+          subtitle: Text("Roll no is ${res['roll_no'].toString()}"),
         ),
       ),
-      body: Center(child: Text("My App")),
-    );
-  }
+    ),
+  );
 }

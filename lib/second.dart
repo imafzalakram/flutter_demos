@@ -1,80 +1,79 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class SecondUI extends StatelessWidget {
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  static const String _title = 'Flutter Code Sample';
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Contact Us"),
-        ),
-        body: Material(
-          child: Container(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        labelText: "Name",
-                        hintText: "Enter Name",
-                        labelStyle: TextStyle(fontSize: 20.0),
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.person),
-                        filled: false,
-                        fillColor: Colors.black12),
-                    keyboardType: TextInputType.name,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        labelText: "Email",
-                        hintText: "Enter Email Address",
-                        labelStyle: TextStyle(fontSize: 20.0),
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.email),
-                        filled: false,
-                        fillColor: Colors.black12),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        labelText: "Phone Number",
-                        hintText: "Enter Phone Number",
-                        labelStyle: TextStyle(fontSize: 20.0),
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.phone),
-                        filled: false,
-                        fillColor: Colors.black12),
-                    keyboardType: TextInputType.phone,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        labelText: "Address",
-                        hintText: "Enter Address",
-                        labelStyle: TextStyle(fontSize: 20.0),
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.location_city),
-                        filled: false,
-                        fillColor: Colors.black12),
-                    keyboardType: TextInputType.streetAddress,
-                    maxLines: 2,
-                  ),
-                ),
-                ElevatedButton(onPressed: () {}, child: Text("Submit"))
-              ],
-            ),
+    return const MaterialApp(
+      title: _title,
+      home: MyStatefulWidget(),
+    );
+  }
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  int _selectedIndex = 0;
+  late WebViewController controler;
+  Set<String> urls = {"https://burst.shopify.com/","https://burst.shopify.com/photos?sort=downloads","https://burst.shopify.com/business-ideas/"};
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('BottomNavigationBar Sample'),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            label: 'All Photos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Business Ideas',
+          ),
+        ],
+
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: (index){
+          setState(() {
+            controler.loadUrl(urls.elementAt(_selectedIndex));
+            _selectedIndex = index;
+          });
+        },
+      ),
+
+      body: Center(
+        child: WebView(
+          initialUrl: "https://burst.shopify.com/",
+          javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (c){
+            controler=c;
+          },
         ),
       ),
     );
   }
 }
+
+
+
