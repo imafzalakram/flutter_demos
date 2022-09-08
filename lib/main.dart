@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+
+// Button types
+// 1. TextButton
+// 2. Outlined Button
+// 3. Elevated Button
+
 void main() {
   runApp(
     MaterialApp(
@@ -10,26 +16,13 @@ void main() {
         ),
         body: Material(
           child: Center(
-            child: TextField(
-              textCapitalization: TextCapitalization.sentences,
-              textInputAction: TextInputAction.send,
-              textAlign: TextAlign.left,
-              cursorColor: Colors.blue,
-              style: TextStyle(
-                color: Colors.blue,
-                fontSize: 25,
+            child: ElevatedButton.icon(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.white),
               ),
-              keyboardType: TextInputType.text,
-              maxLength: 4,
-              decoration: InputDecoration(
-                hintText: "enter text",
-                hintStyle: TextStyle(color: Colors.blue),
-                labelText: "Text",
-                border: OutlineInputBorder(),
-                icon: Icon(Icons.text_fields),
-                prefixIcon: Icon(Icons.article),
-                suffixIcon: Icon(Icons.text_snippet_outlined),
-              ),
+              label: Text("Login"),
+              onPressed: () {},
+              icon: Icon(Icons.login),
             ),
           ),
         ),
@@ -37,3 +30,4 @@ void main() {
     ),
   );
 }
+
