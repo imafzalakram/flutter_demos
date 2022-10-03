@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -7,18 +6,16 @@ void main() async {
   String? name;
   int? rollNo;
   double? GPA;
-  List list;
-
+  Map<String, dynamic> map;
   var url = Uri.parse('https://zonellcollections.shop/app_backend/app_api.php');
-  // API Response ["Ali Khan",123,2.5]
-
+  // Get request
   var response = await http.get(url);
   if (response.statusCode == 200) {
     if (!response.body.isEmpty) {
-      list = jsonDecode(response.body);
-      name = list[0];
-      rollNo = list[1];
-      GPA = list[2];
+      map = jsonDecode(response.body);
+      name = map['name'];
+      rollNo = map['roll_no'];
+      GPA = map['gpa'];
     } else {
       print("Response does not exist!");
     }
